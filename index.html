@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDF Tools</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <header class="barra">
+      <a href="#" class="marca"><span>PDF</span> Tools</a>
+    </header>
+
+    <main>
+      <!-- Portada: las tarjetas NO están escritas acá, las dibuja JS a partir del catálogo -->
+      <section id="portada">
+        <h1>Herramientas para trabajar con PDF</h1>
+        <p class="bajada">
+          Unir, dividir y comprimir documentos sin que salgan de tu computadora:
+          todo se procesa en el navegador.
+        </p>
+        <div id="tarjetas" class="tarjetas"></div>
+      </section>
+
+      <!-- Vista de una herramienta: es UNA sola sección que se rellena según la herramienta elegida -->
+      <section id="herramienta" hidden>
+        <a href="#" class="volver">← Todas las herramientas</a>
+        <h1 id="h-titulo"></h1>
+        <p id="h-descripcion" class="bajada"></p>
+
+        <div id="zona" class="zona">
+          <p><strong>Arrastrá los archivos acá</strong></p>
+          <p>o</p>
+          <label class="boton secundario">
+            Seleccionar del equipo
+            <input
+              id="selector"
+              type="file"
+              accept="application/pdf,.pdf"
+              hidden
+            />
+          </label>
+        </div>
+
+        <ul id="lista" class="lista"></ul>
+        <p id="ayuda-orden" class="nota" hidden>
+          Usá las flechas para cambiar el orden: el orden de la lista es el
+          orden de las páginas en el archivo final.
+        </p>
+
+        <form id="opciones" class="opciones"></form>
+        <button id="ejecutar" class="boton" type="button"></button>
+        <p id="estado" class="estado" role="status"></p>
+        <div id="resultado" class="resultado" hidden></div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      Procesado en tu navegador · ningún archivo sale de tu computadora
+    </footer>
+    <!-- El orden importa: cada archivo usa cosas definidas en los anteriores -->
+    <script src="vendor/pdf-lib.min.js"></script>
+    <script src="js/utilidades.js"></script>
+    <script src="js/catalogo.js"></script>
+    <script src="js/motor/bytes.js"></script>
+    <script src="js/motor/lector.js"></script>
+    <script src="js/motor/filtros.js"></script>
+    <script src="js/servicios/explorar.js"></script>
+    <script src="js/servicios/comunes.js"></script>
+    <script src="js/servicios/unir.js"></script>
+    <script src="js/servicios/dividir.js"></script>
+    <script src="js/servicios/comprimir.js"></script>
+    <script src="js/interfaz.js"></script>
+  </body>
+</html>

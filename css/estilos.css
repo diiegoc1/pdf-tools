@@ -1,0 +1,435 @@
+/* ============================================================
+   ESTILOS
+   Los colores y medidas se definen UNA vez como variables
+   (custom properties) y el resto de la hoja las usa.
+   ============================================================ */
+:root {
+  --rojo: #d93a2b;
+  --rojo-oscuro: #b52d20;
+  --texto: #1d1f23;
+  --texto-suave: #5d636b;
+  --borde: #dde1e6;
+  --fondo: #ffffff;
+  --fondo-suave: #f5f7f9;
+  --verde: #1f7a3a;
+  --radio: 10px;
+  --ancho: 880px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Regla de oro: cualquier elemento con el atributo hidden se oculta SIEMPRE.
+   Sin ella, una regla propia como ".opciones { display: grid }" le gana a la
+   del navegador y el elemento "oculto" aparece igual. (Ver etapa 3). */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.5;
+}
+
+main {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 8px;
+}
+.bajada {
+  text-align: center;
+  color: var(--texto-suave);
+  margin: 0 auto 32px;
+  max-width: 560px;
+}
+
+/* ---------- Barra superior ---------- */
+.barra {
+  border-bottom: 1px solid var(--borde);
+  padding: 14px 24px;
+}
+.marca {
+  font-weight: 700;
+  color: var(--texto);
+  text-decoration: none;
+}
+.marca span {
+  color: var(--rojo);
+}
+
+/* ---------- Portada: grilla de tarjetas ---------- */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+.tarjeta {
+  display: block;
+  padding: 24px 18px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s,
+    transform 0.15s;
+}
+.tarjeta:hover {
+  border-color: var(--rojo);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.06);
+  transform: translateY(-2px);
+}
+.tarjeta .icono {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--rojo);
+  line-height: 1;
+}
+.tarjeta h2 {
+  font-size: 1.05rem;
+  margin: 12px 0 6px;
+}
+.tarjeta p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.pie {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  padding: 24px 16px;
+  border-top: 1px solid var(--borde);
+}
+
+/* ---------- Vista de herramienta ---------- */
+.volver {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--texto-suave);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.volver:hover {
+  color: var(--rojo);
+}
+
+.boton {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 1px solid var(--rojo);
+  border-radius: 8px;
+  background: var(--rojo);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.boton:hover {
+  background: var(--rojo-oscuro);
+}
+.boton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.boton.secundario {
+  background: var(--fondo);
+  color: var(--texto);
+  border-color: var(--borde);
+  font-weight: 500;
+}
+.boton.secundario:hover {
+  border-color: var(--texto-suave);
+}
+#ejecutar {
+  display: block;
+  margin: 24px auto 0;
+}
+
+.opciones {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+.opciones fieldset {
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 12px 16px 16px;
+  margin: 0;
+}
+.opciones legend {
+  font-weight: 600;
+  padding: 0 6px;
+}
+.opciones input[type="text"] {
+  width: 100%;
+  padding: 9px 12px;
+  font: inherit;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+}
+.opciones small {
+  display: block;
+  margin-top: 6px;
+  color: var(--texto-suave);
+}
+.opciones .eleccion {
+  display: block;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.estado {
+  text-align: center;
+  min-height: 1.5em;
+  margin: 16px 0 0;
+  color: var(--texto-suave);
+}
+.estado.error {
+  color: var(--rojo);
+  font-weight: 600;
+}
+
+/* ---------- Zona de arrastre ---------- */
+.zona {
+  border: 2px dashed #b9c3cf;
+  border-radius: var(--radio);
+  background: var(--fondo-suave);
+  padding: 36px 16px;
+  text-align: center;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.zona p {
+  margin: 0 0 8px;
+}
+.zona.encima {
+  background: #fdeceb;
+  border-color: var(--rojo);
+}
+
+/* ---------- Lista de archivos ---------- */
+.lista {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  gap: 8px;
+}
+.archivo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+.archivo .nombre {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.archivo .detalle {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.archivo.con-error {
+  border-color: var(--rojo);
+}
+.archivo.con-error .detalle {
+  color: var(--rojo);
+  white-space: normal;
+}
+.chico {
+  border: 1px solid transparent;
+  background: none;
+  font: inherit;
+  color: var(--texto-suave);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.chico:hover:not(:disabled) {
+  border-color: var(--borde);
+  color: var(--texto);
+}
+.chico:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.nota {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  margin: 10px 0 0;
+}
+
+/* ---------- Resultado ---------- */
+.resultado {
+  margin-top: 24px;
+  text-align: center;
+  scroll-margin-top: 16px;
+}
+.exito {
+  color: var(--verde);
+  font-weight: 600;
+}
+
+/* Informe del explorador */
+.informe {
+  text-align: left;
+}
+.informe h3 {
+  margin: 28px 0 8px;
+  font-size: 1.05rem;
+}
+.informe p {
+  margin: 0 0 8px;
+}
+.ficha {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+.ficha div {
+  background: var(--fondo-suave);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.ficha dt {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+.ficha dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.volcado {
+  background: #1d1f23;
+  color: #e8e8e8;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font:
+    0.8rem/1.5 ui-monospace,
+    "Cascadia Mono",
+    Consolas,
+    monospace;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+.aviso {
+  background: #fff5e0;
+  border-left: 4px solid #e0a100;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+/* Tablas del explorador */
+.tabla-caja {
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  max-height: 420px;
+}
+.tabla {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+}
+.tabla th,
+.tabla td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--borde);
+  text-align: left;
+  white-space: nowrap;
+}
+.tabla th {
+  position: sticky;
+  top: 0;
+  background: var(--fondo-suave);
+}
+.tabla td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.tabla tbody tr {
+  cursor: pointer;
+}
+.tabla tbody tr:hover,
+.tabla tbody tr.elegida {
+  background: #fdeceb;
+}
+
+/* Barras "de qué está hecho el peso" */
+.barras {
+  display: grid;
+  gap: 8px;
+}
+.barra-fila {
+  display: grid;
+  grid-template-columns: minmax(120px, 220px) 1fr 70px;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.barra-fondo {
+  background: var(--fondo-suave);
+  border-radius: 4px;
+  height: 18px;
+  overflow: hidden;
+}
+.barra-relleno {
+  background: var(--rojo);
+  height: 100%;
+  border-radius: 4px;
+}
+.barra-fila .valor {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Descargas */
+.descargas {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+@media (max-width: 560px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  .barra-fila {
+    grid-template-columns: 1fr 60px;
+  }
+  .barra-fila .barra-fondo {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
